@@ -1,0 +1,12 @@
+{
+  "name": "testcrudachoo",
+  "version": "1.0.0",
+  "description": "Lets practice git!!",
+  "main": "app.js",
+  "scripts": {
+    "app": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Achoobert",
+  "license": "ISC"
+}
