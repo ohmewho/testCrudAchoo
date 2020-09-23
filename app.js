@@ -6,6 +6,44 @@
 // 'node app.js'
 // into the command line
 const os = require("os");
+var fs = require("fs");
+//fs.appendFile();
+//fs.open();
+//fs.writeFile();
+//fs.appendFile();
+
+var count = 1;
+
+// try to read if there is memory
+async function readFile() {
+  count = await fs.readFile("./memory.json", function (err, data) {
+    // throw error if no data
+    if (err) {
+      fs.writeFile("./memory.json", 0, function (err) {
+        return 0;
+      });
+      throw err;
+    } //
+    data = parseInt(data);
+    // if data is bigger or = to count
+    // then I have opened this program before
+    if (count <= data) {
+      // increase count of "times opened"
+      count += data;
+    }
+    console.log(count);
+    return count;
+  });
+  return count;
+}
+
+// Write count to a file
+readFile().then((res) => {
+  fs.writeFile("./memory.json", res, function (err) {
+    if (err) throw err;
+    console.log(`Saved!${res} ${count}`);
+  });
+});
 
 console.log("Hello world");
 var operatingSystem = os.arch();
@@ -22,5 +60,5 @@ if (typeof userCpus.speed !== "undefined") {
   console.log(`the processor is: ${userCpus.speed}`);
 }
 console.log(`it looks like I can use these devices to talk on...`);
-console.log(os.networkInterfaces());
+//console.log(os.networkInterfaces());
 //os.networkInterfaces()
